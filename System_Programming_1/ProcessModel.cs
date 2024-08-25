@@ -7,7 +7,7 @@ public class ProcessModel
     public string Image { get; set; }
     public double Memory { get; set; }
     public double CpuUsage { get; set; }
-    public int ThreadCount { get; set; }
+    public int ThreadCount { get; set; } 
     public DateTime StartTime { get; set; }
     public int BasePriority { get; set; }
 }

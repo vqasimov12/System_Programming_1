@@ -1,0 +1,81 @@
+﻿<Page x:Class="System_Programming_1.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:System_Programming_1" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1150"
+      Title="Page1" ShowsNavigationUI="False">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.07*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Background="#060405" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="10" >
+                <TextBlock Text="Order By" FontSize="20" FontWeight="DemiBold" Foreground="White" Margin="20 0"/>
+
+                <Button Width="60" Height="20" BorderThickness="0" Content="Id" Foreground="White" FontSize="15" FontWeight="DemiBold" Click="OrderButton_Click" Background="Transparent"/>
+
+                <Button Width="120" Height="20" BorderThickness="0" Content="Process name" Foreground="White" FontSize="15" FontWeight="DemiBold" Click="OrderButton_Click" Background="Transparent"/>
+
+                <Button Width="120" Height="20" BorderThickness="0" Content="Handles" Foreground="White" FontSize="15" FontWeight="DemiBold" Click="OrderButton_Click" Background="Transparent"/>
+
+                <Button Width="120" Height="20" BorderThickness="0" Content="Threads" Foreground="White" FontSize="15" FontWeight="DemiBold" Click="OrderButton_Click" Background="Transparent"/>
+
+                <Button Width="120" Height="20" BorderThickness="0" Content="Memory" Foreground="White" FontSize="15" FontWeight="DemiBold" Click="OrderButton_Click" Background="Transparent"/>
+                
+                <StackPanel HorizontalAlignment="Right" Margin="140 0" Orientation="Horizontal">
+                <Button Width="120" Height="30" BorderThickness="2" BorderBrush="Gray" Content="Run New Task" Foreground="White" FontSize="15" FontWeight="DemiBold" Click="NewTaskButton_Click" Background="Transparent"/>
+             
+                    <Button Width="120" Height="30" BorderThickness="2" BorderBrush="Gray" Content="Black List" Foreground="White" FontSize="15" Margin="20 0" FontWeight="DemiBold" Click="BlackListPage_button" Background="Transparent"/>
+                    
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <ListView x:Name="List" Grid.Row="1" ItemsSource="{Binding Programs}" Background="#060405">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="15"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="80" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Process Name" Width="300" DisplayMemberBinding="{Binding ProcessName}"/>
+                    <GridViewColumn Header="Handle Count" Width="120" DisplayMemberBinding="{Binding HandleCount}"/>
+                    <GridViewColumn Header="Threads" Width="80" DisplayMemberBinding="{Binding Threads.Count}"/>
+                    <GridViewColumn Header="Machine Name" Width="150" DisplayMemberBinding="{Binding MachineName}"/>
+                    <GridViewColumn Header="Memory (MB)" Width="120" DisplayMemberBinding="{Binding PagedMemorySize}"/>
+                    <GridViewColumn Header="Kill" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="80" Height="20" Click="Kill_Button" Background="DarkSlateGray" >
+                                    <materialDesign:PackIcon Kind="CloseBox" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Add BlackList" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="120" Height="20" Click="BlackList_Button" Background="DarkSlateGray" >
+                                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="PlaylistRemove" Margin="-40 0 0 0" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

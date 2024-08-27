@@ -1,0 +1,44 @@
+﻿<Page x:Class="System_Programming_1.BlackList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:System_Programming_1" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1150"
+      Title="BlackList">
+    <StackPanel>
+        <Button Width="120" Height="30" BorderThickness="2" BorderBrush="Gray" Content="Processes" Foreground="White" FontSize="15" Margin="20 " FontWeight="DemiBold" Click="ProcessesPage_button" Background="Transparent" HorizontalAlignment="Right"/>
+
+
+        <ListView x:Name="List" Grid.Row="1" ItemsSource="{Binding Programs}" Background="#060405">
+            <ListView.Resources>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="15"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="80" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Process Name" Width="300" DisplayMemberBinding="{Binding ProcessName}"/>
+                    <GridViewColumn Header="Remove BlackList" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="120" Height="20" Click="Remove_Button" Background="DarkSlateGray" >
+                                    <materialDesign:PackIcon HorizontalAlignment="Center" Kind="PlaylistRemove" Margin="-40 0 0 0" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</Page>
